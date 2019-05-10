@@ -74,7 +74,7 @@
                         <h3><span class="style-change">Welcome</span> <br>Selamat Datang </h3>
                         <br>
                          <h3><span class="style-change"> Meja / Table </span> <br> Executive 1  </h3> <br> 
-                        <a href="#" class="template-btn mt-3">Explore our Menu / Lihat Menu Kami </a>
+                        <a href="menu-main.php" class="template-btn mt-3">Explore our Menu / Lihat Menu Kami </a>
                         
                     </div>
                 </div>
