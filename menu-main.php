@@ -70,7 +70,18 @@
                     </div>
                 </div>
             </div>
+            <!-- start pilihan menu -->
+            <b> SORT BY </b> All Menu<br>
+            <a href="#" class="template-btn mt-3">All Menu</a>
+            <a href="#" class="template-btn mt-3">Our Chef Recommendation</a>
+            <a href="#" class="template-btn mt-3">Appetizer</a>
+            <a href="#" class="template-btn mt-3">Main Food</a>
+            <a href="#" class="template-btn mt-3">Dessert</a>
+            <a href="#" class="template-btn mt-3">Vegetarian</a>
+            <a href="#" class="template-btn mt-3">Drinks</a>
+            <!-- end pilihan menu -->
 
+            <!-- pilihan menu -->
             <div class="row">
                 <div class="col-md-4 col-sm-6">
                     <div class="single-food">
@@ -162,6 +173,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
