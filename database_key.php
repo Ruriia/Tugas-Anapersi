@@ -6,7 +6,7 @@
             $key = new PDO($a,"root","");
             return $key;
         }catch(PDOExcption $e){
-
+        	
         }
  }
  
