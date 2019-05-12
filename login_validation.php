@@ -1,5 +1,5 @@
 <?php
-	
+	session_start();
 	require "database_key.php";
 	$key = connection();
 	$query = "SELECT * FROM msuser where username=?";
@@ -8,14 +8,14 @@
 	if($row = $siap->fetch()){
 		if(password_verify($_POST['pw'], $row['password'])){
 			$_SESSION['id'] = $row['id'];
-			$_SESSION['nama'] = $row['nama'];
+			$_SESSION['nama'] = $row['name'];
 			$_SESSION['jabatan'] = $row['rank'];
 			if($_SESSION['jabatan'] == 1){
 				header("location:customer/index.php");
 			}else if($_SESSION['jabatan'] == 2){
 				header("location:waiter/index.php");
 			}else if($_SESSION['jabatan'] == 3){
-				header("location:kitchen/index.php");
+				header("location:kitchen/kitchen-ordersystem.php");
 			}else if($_SESSION['jabatan'] == 4){
 				header("location:cashier/index.php");
 			}else if($_SESSION['jabatan'] == 5){

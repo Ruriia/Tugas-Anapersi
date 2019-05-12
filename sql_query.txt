@@ -1,3 +1,14 @@
+create table mstag(tag int not null auto_increment primary key,
+keterangan char(15));
+
+insert into mstag(keterangan) values ("Appetizer"),("Main Food"),("Desert"),("Vegetarian"),("Drinks");
+
+create table tempmenu(tempid int not null auto_increment primary key,
+tableid int,
+menuid int,
+qty int,
+price int);
+
 create table msrank(rank int not null auto_increment primary key,
 keterangan char(10));
 
@@ -26,7 +37,36 @@ insert into msuser(username, name, email, password, rank) values
  ;
 
 
+create table menu(menuid int not null auto_increment primary key,
+namamenu char(30),
+price int,
+description varchar(150),
+img varchar(50),
+tag int,
+recommendation int
+);
 
-create table resep();
+insert into menu(namamenu, price, description, img, tag, recommendation) values 
+("Eggrolls", 25000, "Our special home recipe Egg rolls won't disappoint you.. Trust Us!", "../assets/images/food1.jpg",1,0),
+("Chicken Burger", 29500, "Classic chicken hamburger served with fresh ingredients", "../assets/images/food2.jpg",2,1),
+("Topu Lasange",32000,"Face together given moveth divided form Of Seasons that fruitful.","../assets/images/food3.jpg",2,0),
+("Pepper Potatoas",25000,"Face together given moveth divided form Of Seasons that fruitful.","../assets/images/food4.jpg",1,1),
+("Bean Salad",22500,"Our well-prepared fresh bean salad to brighten up your day!","../assets/images/food5.jpg",3,1),
+("Porkball Hoagie",55000,"Our Porkball Hoagie made with premium meat and seasonings","../assets/images/food6.jpg",5,1);
 
-create table stock();
+create table master_order(masterorder int not null auto_increment primary key,
+tableid int,
+orderdate date,
+orderhour time,
+status numeric(1));
+
+create table ordered_item(orderid int not null auto_increment primary key,
+masterorder int,
+menuid int,
+qty int,
+total int);
+
+
+create table stock(stockid int not null auto_increment primary key,
+stock_name varchar(30),
+stock int);
