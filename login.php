@@ -16,7 +16,7 @@
     <!-- Login Form -->
     <form action="login_validation.php" method="post">
       <input type="text" id="login" class="fadeIn second" name="id" placeholder="ID" onchange="check()">
-      <input type="text" id="password" class="fadeIn third" name="pw" placeholder="Password"       onchange="check()">
+      <input type="text" id="password" class="fadeIn third" name="pw" placeholder="Password"   onchange="check()">
       <input type="submit" class="fadeIn fourth" value="Log In" id="masuk" disabled/>
       <br>
       <strong id="isi" style="color: red; font-family: Comic Sans MS"></strong>
