@@ -55,59 +55,6 @@
     </header>
     <!-- Header Area End -->
 
-<!-- Order Review -->
-
-  <div class="modal fade" id="myReview" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-         
-
-        </div>
-        
-
-        <div class="modal-body">
-          <h4 style="color: black;">Table Order Cart</h4>
-          <h4 style="color: black;">Executive 1</h4>
-          Please review your order.
-          Click "Order Now" to order, or click "Add More" to add more food/drink. <br><br>
-        <form action="process-customerorder.php" method="post">
-          <table border="1">
-              <tr>
-                <th width="15px">No</th>
-                <th width="300px">Menu Name</th>
-                <th width="15px">Qty</th>
-                <th width="275px">Price Each</th>
-                <th width="275px">Total</th>
-              </tr>
-
-
-              <tr>
-                <td></td>
-                <td>Menu 1</td>
-                <td>2</td>
-                <td style="text-align: right;"> Rp25.000,-</td>
-                <td style="text-align: right;"> Rp50.000,-</td>
-              </tr>
-          </table>
-
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-default">Order Now</button>
-        </form>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Add More</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-  
-</div>
-<!-- End of Order Review -->
-
     <!-- Food Area starts -->
     <section class="food-area section-padding">
         <div class="container">
@@ -133,104 +80,17 @@
                         <div class="food-content">
                             <div class="d-flex justify-content-between">
                                 <h5>Executive 1</h5>
-                                <span class="style-change">Processing </span>
+                                <span class="style-change">Not Paid </span>
                             </div>
-                            Estimation : .... minutes
-                            <table border="1">
-                              <tr>
-                                <th width="15px">No</th>
-                                <th width="300px">Menu Name</th>
-                                <th width="15px">Qty</th>
-                              </tr>
-
-
-                              <tr>
-                                <td></td>
-                                <td>Topu Lasange</td>
-                                <td>3</td>
-                              </tr>
-                               <tr>
-                                <td></td>
-                                <td>Mineral Water</td>
-                                <td>2</td>
-                              </tr>
-                               <tr>
-                                <td></td>
-                                <td>Ice Tea Sparkling</td>
-                                <td>1</td>
-                              </tr>
-                          </table>
-                            <a href="#" class="template-btn mt-3"> Finish Processing </a>
-                             <a href="#" class="template-btn mt-3" data-toggle="modal" data-target="#myUpdateETA"> Update Estimation </a>
+                            
+                            <a href="#" class="template-btn mt-3" data-toggle="modal" data-target="#myPaymentSummary"> start transaction </a>
+                            
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-4 col-sm-6">
-                    <div class="single-food">
-                        
-                        <div class="food-content">
-                            <div class="d-flex justify-content-between">
-                                <h5>Executive 5</h5>
-                                <span class="style-change">Processing </span>
-                            </div>
-                            Estimation : .... minutes
-                            <table border="1">
-                              <tr>
-                                <th width="15px">No</th>
-                                <th width="300px">Menu Name</th>
-                                <th width="15px">Qty</th>
-                              </tr>
 
 
-                              <tr>
-                                <td></td>
-                                <td>Chicken Burger</td>
-                                <td>2</td>
-                              </tr>
-                              <tr>
-                                <td></td>
-                                <td>Eggrolls</td>
-                                <td>5</td>
-                              </tr>
-                          </table>
-                            <a href="#" class="template-btn mt-3"> Finish Processing </a>
-                             <a href="#" class="template-btn mt-3" data-toggle="modal" data-target="#myUpdateETA"> Update Estimation </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="single-food">
-                        
-                        <div class="food-content">
-                            <div class="d-flex justify-content-between">
-                                <h5>Executive 2</h5>
-                                <span class="style-change">Pending </span>
-                            </div>
-                            <table border="1">
-                              <tr>
-                                <th width="15px">No</th>
-                                <th width="300px">Menu Name</th>
-                                <th width="15px">Qty</th>
-                              </tr>
-
-
-                              <tr>
-                                <td></td>
-                                <td>Chicken Burger</td>
-                                <td>2</td>
-                              </tr>
-                              <tr>
-                                <td></td>
-                                <td>Eggrolls</td>
-                                <td>5</td>
-                              </tr>
-                          </table>
-                            <a href="#" class="template-btn mt-3"> Start Processing </a>
-                        </div>
-                    </div>
-                </div>
 
                 
 
@@ -241,7 +101,7 @@
 
     <!-- UpdateETA -->
 
-  <div class="modal fade" id="myUpdateETA" role="dialog">
+  <div class="modal fade" id="myPaymentSummary" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->

@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 	
 	require "database_key.php";
 	$key = connection();
@@ -8,7 +10,7 @@
 	if($row = $siap->fetch()){
 		if(password_verify($_POST['pw'], $row['password'])){
 			$_SESSION['id'] = $row['id'];
-			$_SESSION['nama'] = $row['nama'];
+			$_SESSION['nama'] = $row['name'];
 			$_SESSION['jabatan'] = $row['rank'];
 			$_SESSION['']
 			if($_SESSION['jabatan'] == 1){
