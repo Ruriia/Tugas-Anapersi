@@ -2,8 +2,7 @@
 	
 	require "database_key.php";
 	$key = connection();
-
-	$query = "SELECT * FROM msdata where id=?";
+	$query = "SELECT * FROM msuser where username=?";
 	$siap = $key->prepare($query);
 	$siap->execute([$_POST['id']]);
 	if($row = $siap->fetch()){
@@ -11,8 +10,9 @@
 			$_SESSION['id'] = $row['id'];
 			$_SESSION['nama'] = $row['nama'];
 			$_SESSION['jabatan'] = $row['rank'];
+			$_SESSION['']
 			if($_SESSION['jabatan'] == 1){
-				header("location:user/index.php");
+				header("location:customer/index.php");
 			}else if($_SESSION['jabatan'] == 2){
 				header("location:chef/index.php");
 			}else if($_SESSION['jabatan'] == 3){

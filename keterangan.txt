@@ -1,0 +1,6 @@
+master = $2y$10$hXaDlsYAElzUZToN4wUIi.t1E5ryscu6aEnzX57s1CtGqfAL93apG
+manager = $2y$10$Ui/s.POyXnYWmIQmZvEGFeuuylqespS9BJ9.ajac.JEpLDMbvqAUS
+cashier = $2y$10$82/DL5TZG5xFdff9S36DR.qGvlbEbgfOAqDGM8/JI7CKa7lVhiUBu
+customer = $2y$10$giPuQz1sbkUXlWsv6q.sM.L7.0SkQvc0/yP2YU29MqJzCLySSxmm.
+waiter = $2y$10$XHU.yJdwmgJK9R.kD5U0veUbPdn51SDm2fxd6TfNtNCh0a1ThMak.
+kitchen = $2y$10$MBrr/PAkyOmvGb7gSPY2Ne03eu2uB1KRf5ijGWgCLeO3MA1zkUjCq
