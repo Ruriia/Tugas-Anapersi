@@ -156,14 +156,14 @@
                 </div>
             </div>
             <!-- start pilihan menu -->
-            <b> SORT BY </b> All Menu<br>
-            <a href="#" class="template-btn mt-3">All Menu</a>
-            <a href="sort-menu/customer-mainmenu-recommendation.php" class="template-btn mt-3">Our Chef Recommendation</a>
-            <a href="sort-menu/customer-mainmenu-appetizer.php" class="template-btn mt-3">Appetizer</a>
-            <a href="sort-menu/customer-mainmenu-main.php" class="template-btn mt-3">Main Food</a>
-            <a href="sort-menu/customer-mainmenu-dessert.php" class="template-btn mt-3">Dessert</a>
-            <a href="sort-menu/customer-mainmenu-vegetarian.php" class="template-btn mt-3">Vegetarian</a>
-            <a href="sort-menu/customer-mainmenu-drinks.php" class="template-btn mt-3">Drinks</a>
+            <b> SORT BY </b> Vegetarian<br>
+            <a href="../customer-mainmenu.php" class="template-btn mt-3">All Menu</a>
+            <a href="customer-mainmenu-recommendation.php" class="template-btn mt-3">Our Chef Recommendation</a>
+            <a href="customer-mainmenu-appetizer.php" class="template-btn mt-3">Appetizer</a>
+            <a href="customer-mainmenu-main.php" class="template-btn mt-3">Main Food</a>
+            <a href="customer-mainmenu-dessert.php" class="template-btn mt-3">Dessert</a>
+            <a href="#" class="template-btn mt-3">Vegetarian</a>
+            <a href="customer-mainmenu-drink.php" class="template-btn mt-3">Drinks</a>
             <!-- end pilihan menu -->
 
             <!-- pilihan menu -->
