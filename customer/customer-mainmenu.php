@@ -1,3 +1,10 @@
+<!--
+Catatan Database :
+yang perlu hubungan database : USER, MENU LIST, KATEGORI
+
+-->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

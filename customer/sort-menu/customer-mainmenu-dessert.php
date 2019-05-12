@@ -163,7 +163,7 @@
             <a href="customer-mainmenu-main.php" class="template-btn mt-3">Main Food</a>
             <a href="#" class="template-btn mt-3">Dessert</a>
             <a href="customer-mainmenu-vegetarian.php" class="template-btn mt-3">Vegetarian</a>
-            <a href="customer-mainmenu-drinks.php" class="template-btn mt-3">Drinks</a>
+            <a href="customer-mainmenu-drink.php" class="template-btn mt-3">Drinks</a>
             <!-- end pilihan menu -->
 
             <!-- pilihan menu -->
