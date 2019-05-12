@@ -1,8 +1,43 @@
-<!--
-Catatan Database :
-yang perlu hubungan database : USER, MENU LIST, KATEGORI
+<?php
+    session_start();
+    require "../database_key.php";
+    $key = connection();
+    $reco = (isset($_GET['recom'])) ? $_GET['recom'] : "";
+    $type = (isset($_GET['type'])) ? $_GET['type'] : "";
+    if($reco != ""){
+        $sql = "SELECT count(menuid) as panjang from menu where recommendation = ?";
 
--->
+        $run = $key->prepare($sql);
+        $run->execute([$reco]);
+        $data = $run->fetch();
+        $length = $data['panjang'];
+
+        $selectmenu = "SELECT * FROM menu where recommendation = ?";
+        $menudata = $key->prepare($selectmenu);
+        $menudata->execute([$_GET['recom']]);
+    }else if($type != ""){
+        $sql = "SELECT count(menuid) as panjang from menu where tag = ?";
+
+        $run = $key->prepare($sql);
+        $run->execute([$type]);
+        $data = $run->fetch();
+        $length = $data['panjang'];
+
+        $selectmenu = "SELECT * FROM menu where tag = ?";
+        $menudata = $key->prepare($selectmenu);
+        $menudata->execute([$_GET['type']]);
+    }else{
+        $sql = "SELECT count(menuid) as panjang from menu";
+
+        $run = $key->query($sql);
+        $data = $run->fetch();
+        $length = $data['panjang'];
+
+        $selectmenu = "SELECT * FROM menu";
+        $menudata = $key->query($selectmenu);
+    }
+    $a = 0;
+?>
 
 
 <!DOCTYPE html>
@@ -54,7 +89,7 @@ yang perlu hubungan database : USER, MENU LIST, KATEGORI
                     </div>  
                     <div class="main-menu">
                         <ul>
-                            <li> Table <b> Executive 1 </b> </li> &nbsp;
+                            <li> Table <b> <?= $_SESSION['nama']; ?> </b> </li> &nbsp;
                             <li> <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Review Order</button></li>
                            &nbsp;
                             <li> <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myCallWaiter">Call Waiter</button></li>
@@ -111,10 +146,10 @@ yang perlu hubungan database : USER, MENU LIST, KATEGORI
 
         <div class="modal-body">
           <h4 style="color: black;">Table Order Cart</h4>
-          <h4 style="color: black;">Executive 1</h4>
+          <h4 style="color: black;"><?= $_SESSION['nama']; ?></h4>
           Please review your order.
           Click "Order Now" to order, or click "Add More" to add more food/drink. <br><br>
-        <form action="process-customerorder.php" method="post">
+        
           <table border="1">
               <tr>
                 <th width="15px">No</th>
@@ -122,22 +157,34 @@ yang perlu hubungan database : USER, MENU LIST, KATEGORI
                 <th width="15px">Qty</th>
                 <th width="275px">Price Each</th>
                 <th width="275px">Total</th>
+                <th width="400px">Delete an item</th>
               </tr>
-
-
+              <?php 
+                $tempmenu = "SELECT tempmenu.tempid as idmenu, menu.namamenu as menuname, tempmenu.qty as qty, tempmenu.price as harga FROM tempmenu,menu WHERE tableid = ? and tempmenu.menuid = menu.menuid";
+                $hasil = $key->prepare($tempmenu);
+                $hasil->execute([$_SESSION['id']]);
+                $x = 0;
+                while($jalan = $hasil->fetch()):
+                $x++;
+                $peritem = $jalan['harga'] / $jalan['qty'];
+              ?>
               <tr>
-                <td></td>
-                <td>Menu 1</td>
-                <td>2</td>
-                <td style="text-align: right;"> Rp25.000,-</td>
-                <td style="text-align: right;"> Rp50.000,-</td>
+                <td><?= $x; ?></td>
+                <td><?= $jalan['menuname']; ?></td>
+                <td><?= $jalan['qty']; ?></td>
+                <td style="text-align: right;"><?= $peritem; ?></td>
+                <td style="text-align: right;"><?= $jalan['harga']; ?></td>
+                <td><a href="deleteanitem.php?del=<?= $jalan['idmenu'] ?>">Remove from cart</a></td>
               </tr>
+          <?php endwhile;?>
           </table>
 
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-default">Order Now</button>
-        </form>
+            <form action="addall.php">
+                <button type="submit" class="btn btn-default">Order Now</button>    
+            </form>
+       
           <button type="button" class="btn btn-default" data-dismiss="modal">Add More</button>
         </div>
       </div>
@@ -164,109 +211,49 @@ yang perlu hubungan database : USER, MENU LIST, KATEGORI
             </div>
             <!-- start pilihan menu -->
             <b> SORT BY </b> All Menu<br>
-            <a href="#" class="template-btn mt-3">All Menu</a>
-            <a href="sort-menu/customer-mainmenu-recommendation.php" class="template-btn mt-3">Our Chef Recommendation</a>
-            <a href="sort-menu/customer-mainmenu-appetizer.php" class="template-btn mt-3">Appetizer</a>
-            <a href="sort-menu/customer-mainmenu-main.php" class="template-btn mt-3">Main Food</a>
-            <a href="sort-menu/customer-mainmenu-dessert.php" class="template-btn mt-3">Dessert</a>
-            <a href="sort-menu/customer-mainmenu-vegetarian.php" class="template-btn mt-3">Vegetarian</a>
-            <a href="sort-menu/customer-mainmenu-drinks.php" class="template-btn mt-3">Drinks</a>
+            <a href="customer-mainmenu.php" class="template-btn mt-3">All Menu</a>
+            <a href="customer-mainmenu.php?recom=1" class="template-btn mt-3">Our Chef Recommendation</a>
+            <a href="customer-mainmenu.php?type=1" class="template-btn mt-3">Appetizer</a>
+            <a href="customer-mainmenu.php?type=2" class="template-btn mt-3">Main Food</a>
+            <a href="customer-mainmenu.php?type=3" class="template-btn mt-3">Dessert</a>
+            <a href="customer-mainmenu.php?type=4" class="template-btn mt-3">Vegetarian</a>
+            <a href="customer-mainmenu.php?type=5" class="template-btn mt-3">Drinks</a>
             <!-- end pilihan menu -->
 
             <!-- pilihan menu -->
+            <?php while($a < $length): ?>
             <div class="row">
+                <?php $i = 0; 
+                    while($i < 3):
+                    $i++;
+                    $a++;
+                    if($row = $menudata->fetch()){
+
+                    }else{
+                        break;
+                    } 
+                     ?>
                 <div class="col-md-4 col-sm-6">
                     <div class="single-food">
                         <div class="food-img">
-                            <img src="../assets/images/food1.jpg" class="img-fluid" alt="">
+                            <img src="<?= $row['img']; ?>" class="img-fluid" alt="">
                         </div>
                         <div class="food-content">
                             <div class="d-flex justify-content-between">
-                                <h5>Eggrolls</h5>
-                                <span class="style-change">Rp25.000,- </span>
+                                <h5><?= $row['namamenu']; ?></h5>
+                                <span class="style-change">Rp. <?= $row['price']; ?></span>
                             </div>
-                            <p class="pt-3">Our special home recipe Egg rolls won't disappoint you.. Trust Us! </p>
-                            <a href="#" class="template-btn mt-3">Add to Cart </a>
+                            <p class="pt-3"><?= $row['description']; ?> </p>
+                            <form action="addcart.php?id=<?= $row['menuid']; ?>" method="post" class="form-group">
+                                <input type="text" name="qty" class="form-control" placeholder="How much you want to order?">
+                                <button type="submit"  class="template-btn mt-3">Add to Cart</button>
+                            </form>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="single-food mt-5 mt-sm-0">
-                        <div class="food-img">
-                            <img src="../assets/images/food2.jpg" class="img-fluid" alt="">
-                        </div>
-                        <div class="food-content">
-                            <div class="d-flex justify-content-between">
-                                <h5>chicken burger</h5>
-                                <span class="style-change">Rp29.500,-</span>
-                            </div>
-                            <p class="pt-3">Classic chicken hamburger served with fresh ingredients</p>
-                             <a href="#" class="template-btn mt-3">Add to Cart </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="single-food mt-5 mt-md-0">
-                        <div class="food-img">
-                            <img src="../assets/images/food3.jpg" class="img-fluid" alt="">
-                        </div>
-                        <div class="food-content">
-                            <div class="d-flex justify-content-between">
-                                <h5>topu lasange</h5>
-                                <span class="style-change">Rp32.000,-</span>
-                            </div>
-                            <p class="pt-3">Face together given moveth divided form Of Seasons that fruitful.</p>
-                            <a href="#" class="template-btn mt-3">Add to Cart </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="single-food mt-5">
-                        <div class="food-img">
-                            <img src="../assets/images/food4.jpg" class="img-fluid" alt="">
-                        </div>
-                        <div class="food-content">
-                            <div class="d-flex justify-content-between">
-                                <h5>pepper potatoas</h5>
-                                <span class="style-change">Rp25.000,-</span>
-                            </div>
-                            <p class="pt-3">Face together given moveth divided form Of Seasons that fruitful.</p>
-                            <a href="#" class="template-btn mt-3" disabled> Sold Out </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="single-food mt-5">
-                        <div class="food-img">
-                            <img src="../assets/images/food5.jpg" class="img-fluid" alt="">
-                        </div>
-                        <div class="food-content">
-                            <div class="d-flex justify-content-between">
-                                <h5>bean salad</h5>
-                                <span class="style-change">Rp22.500,-</span>
-                            </div>
-                            <p class="pt-3">Our well-prepared fresh bean salad to brighten up your day!</p>
-                            <a href="#" class="template-btn mt-3">Add to Cart </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="single-food mt-5">
-                        <div class="food-img">
-                            <img src="../assets/images/food6.jpg" class="img-fluid" alt="">
-                        </div>
-                        <div class="food-content">
-                            <div class="d-flex justify-content-between">
-                                <h5>Porkball hoagie</h5>
-                                <span class="style-change">Rp55.000,-</span>
-                            </div>
-                            <p class="pt-3">Our "Porkball Hoagie" made with premium meat and seasonings </p>
-                            <a href="#" class="template-btn mt-3">Add to Cart </a><br>
-                        </div>
-                    </div>
-                </div>
-
+            <?php endwhile; ?>
             </div>
+        <?php endwhile; ?>
         </div>
     </section>
     <!-- Food Area End -->

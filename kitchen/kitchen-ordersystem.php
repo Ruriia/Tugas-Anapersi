@@ -1,6 +1,25 @@
+<?php
+  require "../database_key.php";
+  $key = connection();
+
+  
+  $sql = "SELECT count(*) as panjang FROM master_order WHERE status = 0";
+  $run = $key->query($sql);
+  $hasil = $run->fetch();
+  $length = $hasil['panjang'];
+  $a = 0;
+  
+
+  $sql = "SELECT * FROM master_order WHERE status = 0";
+
+  $run = $key->query($sql);
+?> 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta http-equiv="refresh" content="10">
+
     <!-- Required Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,7 +66,7 @@
                     </div>  
                     <div class="main-menu">
                         <ul>
-                            <li> User <b> Kitchen </b> </li> &nbsp;
+                            <li> User: <b> Kitchen</b> </li> &nbsp;
                     </div>
                 </div>
             </div>
@@ -71,37 +90,10 @@
         </div>
         
 
-        <div class="modal-body">
-          <h4 style="color: black;">Table Order Cart</h4>
-          <h4 style="color: black;">Executive 1</h4>
-          Please review your order.
-          Click "Order Now" to order, or click "Add More" to add more food/drink. <br><br>
-        <form action="process-customerorder.php" method="post">
-          <table border="1">
-              <tr>
-                <th width="15px">No</th>
-                <th width="300px">Menu Name</th>
-                <th width="15px">Qty</th>
-                <th width="275px">Price Each</th>
-                <th width="275px">Total</th>
-              </tr>
-
-
-              <tr>
-                <td></td>
-                <td>Menu 1</td>
-                <td>2</td>
-                <td style="text-align: right;"> Rp25.000,-</td>
-                <td style="text-align: right;"> Rp50.000,-</td>
-              </tr>
-          </table>
+        
 
         </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-default">Order Now</button>
-        </form>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Add More</button>
-        </div>
+        
       </div>
       
     </div>
@@ -128,115 +120,80 @@
             
 
             <!-- pilihan menu -->
+            <?php while($a < $length): 
+              $i = 0;?>
             <div class="row">
-                <div class="col-md-4 col-sm-6">
-                    <div class="single-food">
-                        
-                        <div class="food-content">
-                            <div class="d-flex justify-content-between">
-                                <h5>Executive 1</h5>
-                                <span class="style-change">Processing </span>
-                            </div>
-                            Estimation : .... minutes
-                            <table border="1">
-                              <tr>
-                                <th width="15px">No</th>
-                                <th width="300px">Menu Name</th>
-                                <th width="15px">Qty</th>
-                              </tr>
+              <?php while($i < 3):
+                $beres = 0;
+                $i++;
+                $a++;
+                if($row = $run->fetch()){
 
-
-                              <tr>
-                                <td></td>
-                                <td>Topu Lasange</td>
-                                <td>3</td>
-                              </tr>
-                               <tr>
-                                <td></td>
-                                <td>Mineral Water</td>
-                                <td>2</td>
-                              </tr>
-                               <tr>
-                                <td></td>
-                                <td>Ice Tea Sparkling</td>
-                                <td>1</td>
-                              </tr>
-                          </table>
-                            <a href="#" class="template-btn mt-3"> Finish Processing </a>
-                             <a href="#" class="template-btn mt-3" data-toggle="modal" data-target="#myUpdateETA"> Update Estimation </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="single-food">
-                        
-                        <div class="food-content">
-                            <div class="d-flex justify-content-between">
-                                <h5>Executive 5</h5>
-                                <span class="style-change">Processing </span>
-                            </div>
-                            Estimation : .... minutes
-                            <table border="1">
-                              <tr>
-                                <th width="15px">No</th>
-                                <th width="300px">Menu Name</th>
-                                <th width="15px">Qty</th>
-                              </tr>
-
-
-                              <tr>
-                                <td></td>
-                                <td>Chicken Burger</td>
-                                <td>2</td>
-                              </tr>
-                              <tr>
-                                <td></td>
-                                <td>Eggrolls</td>
-                                <td>5</td>
-                              </tr>
-                          </table>
-                            <a href="#" class="template-btn mt-3"> Finish Processing </a>
-                             <a href="#" class="template-btn mt-3" data-toggle="modal" data-target="#myUpdateETA"> Update Estimation </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="single-food">
-                        
-                        <div class="food-content">
-                            <div class="d-flex justify-content-between">
-                                <h5>Executive 2</h5>
-                                <span class="style-change">Pending </span>
-                            </div>
-                            <table border="1">
-                              <tr>
-                                <th width="15px">No</th>
-                                <th width="300px">Menu Name</th>
-                                <th width="15px">Qty</th>
-                              </tr>
-
-
-                              <tr>
-                                <td></td>
-                                <td>Chicken Burger</td>
-                                <td>2</td>
-                              </tr>
-                              <tr>
-                                <td></td>
-                                <td>Eggrolls</td>
-                                <td>5</td>
-                              </tr>
-                          </table>
-                            <a href="#" class="template-btn mt-3"> Start Processing </a>
-                        </div>
-                    </div>
-                </div>
-
+                }else{
+                  break;
+                }
+                $meja = $row['tableid'];
+                $master = $row['masterorder'];
+                $sqlbaru = "SELECT count(*) as jumlah FROM ordered_item WHERE masterorder = ?";
+                $scale = $key->prepare($sqlbaru);
+                $scale->execute([$master]);
+                $getpanjang = $scale->fetch();
+                $created = $getpanjang['jumlah'];
                 
+                ?>
+                <div class="col-md-4 col-sm-6">
+                    <div class="single-food">
+                        
+                        <div class="food-content">
+                            <div class="d-flex justify-content-between">
+                                <h5><?= $meja ?></h5>
+                                <span class="style-change">Processing </span>
+                            </div>
+                            Estimation : .... minutes
+                            <table border="1">
+                              <tr>
+                                <th width="15px">No</th>
+                                <th width="300px">Menu Name</th>
+                                <th width="15px">Qty</th>
+                                <th> Update </th>
+                              </tr>
+                              <?php
+                              $sqlbaru = "SELECT menu.namamenu as namamenu, ordered_item.qty as qty, ordered_item.orderid as idorder, ordered_item.status as status FROM ordered_item, menu WHERE masterorder = ? and ordered_item.menuid = menu.menuid";
+                              $jalan = $key->prepare($sqlbaru);
+                              $jalan->execute([$master]); 
+                              $x = 0;
+                              while($ambilorder = $jalan->fetch()):
+                              $x++; 
+                              ?>
+                              <tr>
+                                <th><?= $x; ?></th>
+                                <th><?= $ambilorder['namamenu']; ?></th>
+                                <th><?= $ambilorder['qty']; ?></th>
+                                <th><?php if($ambilorder['status'] == 1): 
+                                      $beres++;
+                                      ?>
+                                      <b>Completed</b>
+                                    <?php else: ?>
+                                      <a href="done.php?id=<?= $ambilorder['idorder'] ?>">Done</a>
+                                    <?php endif; ?>
+                                </th>
+                              </tr>
+                            <?php endwhile; ?>
+                            <?php if($beres == $created){
+                              $updatestatus = "UPDATE master_order SET status = 1 WHERE masterorder = ?";
+                              $mulaiupdate = $key->prepare($updatestatus);
+                              $mulaiupdate->execute([$master]);
 
-            </div>
+                            }
+                            ?>
+                          </table>
+                             
+                        </div>
+                    </div>
+                </div>
+              <?php endwhile; ?>
+              </div>
+            <?php endwhile; ?>
         </div>
     </section>
     <!-- Food Area End -->
