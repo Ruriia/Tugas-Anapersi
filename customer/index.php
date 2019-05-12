@@ -45,7 +45,7 @@
                     <div class="main-menu">
                         <ul>
                             
-                            <li><a href="#">Call Waiter</a>
+                            <li><a href="getwaiter.php">Call Waiter</a>
                                 
                             </li>
                         </ul>

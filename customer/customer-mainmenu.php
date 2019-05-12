@@ -92,7 +92,7 @@
                             <li> Table <b> <?= $_SESSION['nama']; ?> </b> </li> &nbsp;
                             <li> <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Review Order</button></li>
                            &nbsp;
-                            <li> <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myCallWaiter">Call Waiter</button></li>
+                            <li> <a class="btn btn-info btn-lg" href="getwaiter.php">Call Waiter</a></li>
                         </ul>
                     </div>
                 </div>
