@@ -82,11 +82,8 @@
                                 <h5>User</h5>
                             </div>
                             
-                            <a href="#" class="template-btn mt-3" data-toggle="modal" data-target="#myUserList"> User List </a>
-                            <a href="#" class="template-btn mt-3" data-toggle="modal" data-target="#myAddUser"> Add User </a>
-                            <a href="#" class="template-btn mt-3" data-toggle="modal" data-target="#myEditUser"> Edit User </a>
-                            <a href="deleteuser_proses.php" class="template-btn mt-3"> Delete User </a>
-                            
+                            <a href="alluser.php" class="template-btn mt-3"> User List </a>
+                            <a href="create.php" class="template-btn mt-3"> Add User </a>
                         </div>
                     </div>
                 </div>

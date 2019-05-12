@@ -25,15 +25,16 @@ username varchar(20),
 name varchar(25),
 email varchar(50),
 password varchar(100),
-rank int(1) references msrank(rank) on update cascade on delete cascade);
+rank int(1) references msrank(rank) on update cascade on delete cascade,
+calling numeric(1));
 
-insert into msuser(username, name, email, password, rank) values 
-("customer", "customer", "customer", "$2y$10$giPuQz1sbkUXlWsv6q.sM.L7.0SkQvc0/yP2YU29MqJzCLySSxmm.", 1),
-("waiter", "waiter", "waiter", "$2y$10$XHU.yJdwmgJK9R.kD5U0veUbPdn51SDm2fxd6TfNtNCh0a1ThMak.", 2),
-("kitchen", "kitchen", "kitchen", "$2y$10$MBrr/PAkyOmvGb7gSPY2Ne03eu2uB1KRf5ijGWgCLeO3MA1zkUjCq", 3),
-("cashier", "cashier", "cashier", "$2y$10$82/DL5TZG5xFdff9S36DR.qGvlbEbgfOAqDGM8/JI7CKa7lVhiUBu", 4),
-("manager", "manager", "manager", "$2y$10$Ui/s.POyXnYWmIQmZvEGFeuuylqespS9BJ9.ajac.JEpLDMbvqAUS", 5),
-("master", "master", "master", "$2y$10$hXaDlsYAElzUZToN4wUIi.t1E5ryscu6aEnzX57s1CtGqfAL93apG", 6)
+insert into msuser(username, name, email, password, rank, calling) values 
+("customer", "customer", "customer", "$2y$10$giPuQz1sbkUXlWsv6q.sM.L7.0SkQvc0/yP2YU29MqJzCLySSxmm.", 1,0),
+("waiter", "waiter", "waiter", "$2y$10$XHU.yJdwmgJK9R.kD5U0veUbPdn51SDm2fxd6TfNtNCh0a1ThMak.", 2,0),
+("kitchen", "kitchen", "kitchen", "$2y$10$MBrr/PAkyOmvGb7gSPY2Ne03eu2uB1KRf5ijGWgCLeO3MA1zkUjCq", 3,0),
+("cashier", "cashier", "cashier", "$2y$10$82/DL5TZG5xFdff9S36DR.qGvlbEbgfOAqDGM8/JI7CKa7lVhiUBu", 4,0),
+("manager", "manager", "manager", "$2y$10$Ui/s.POyXnYWmIQmZvEGFeuuylqespS9BJ9.ajac.JEpLDMbvqAUS", 5,0),
+("master", "master", "master", "$2y$10$hXaDlsYAElzUZToN4wUIi.t1E5ryscu6aEnzX57s1CtGqfAL93apG", 6,0)
  ;
 
 
