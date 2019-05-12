@@ -50,7 +50,7 @@
                             <li> Table <b> Executive 1 </b> </li> &nbsp;
                             <li> <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Review Order</button></li>
                            &nbsp;
-                            <li> <a href="#" class="template-btn mt-3">Call Waiter</a></li>
+                            <li> <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myCallWaiter">Call Waiter</button></li>
                         </ul>
                     </div>
                 </div>
@@ -58,6 +58,35 @@
         </div>
     </header>
     <!-- Header Area End -->
+
+<!-- Call Waiter -->
+
+  <div class="modal fade" id="myCallWaiter" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+         
+
+        </div>
+        
+
+        <div class="modal-body">
+          <h4 style="color: black;">Call Waiter Successful</h4>
+          Our waiter will be notified to serve you.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+<!-- End of Call Waiter -->
 
 <!-- Order Review -->
 
@@ -76,10 +105,8 @@
         <div class="modal-body">
           <h4 style="color: black;">Table Order Cart</h4>
           <h4 style="color: black;">Executive 1</h4>
-          <h6 style="color: red;">
           Please review your order.
-          Click "Order Now" to order, or click "Add More" to add more food/drink.
-          </h6>
+          Click "Order Now" to order, or click "Add More" to add more food/drink. <br><br>
         <form action="process-customerorder.php" method="post">
           <table border="1">
               <tr>
