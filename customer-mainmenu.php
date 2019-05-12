@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <meta charset="utf-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
     <!-- Page Title -->
     <title>Welcome Page</title>
@@ -45,7 +48,7 @@
                     <div class="main-menu">
                         <ul>
                             <li> Table <b> Executive 1 </b> </li> &nbsp;
-                            <li> <a href="#" class="template-btn mt-3">View Order Cart</a></li>
+                            <li> <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Review Order</button></li>
                            &nbsp;
                             <li> <a href="#" class="template-btn mt-3">Call Waiter</a></li>
                         </ul>
@@ -55,6 +58,61 @@
         </div>
     </header>
     <!-- Header Area End -->
+
+<!-- Order Review -->
+
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+         
+
+        </div>
+        
+
+        <div class="modal-body">
+          <h4 style="color: black;">Table Order Cart</h4>
+          <h4 style="color: black;">Executive 1</h4>
+          <h6 style="color: red;">
+          Please review your order.
+          Click "Order Now" to order, or click "Add More" to add more food/drink.
+          </h6>
+        <form action="process-customerorder.php" method="post">
+          <table border="1">
+              <tr>
+                <th width="15px">No</th>
+                <th width="300px">Menu Name</th>
+                <th width="15px">Qty</th>
+                <th width="275px">Price Each</th>
+                <th width="275px">Total</th>
+              </tr>
+
+
+              <tr>
+                <td></td>
+                <td>Menu 1</td>
+                <td>2</td>
+                <td style="text-align: right;"> Rp25.000,-</td>
+                <td style="text-align: right;"> Rp50.000,-</td>
+              </tr>
+          </table>
+
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-default">Order Now</button>
+        </form>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Add More</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+<!-- End of Order Review -->
 
     <!-- Food Area starts -->
     <section class="food-area section-padding">
