@@ -12,13 +12,18 @@ session_start();
 			$_SESSION['id'] = $row['id'];
 			$_SESSION['nama'] = $row['name'];
 			$_SESSION['jabatan'] = $row['rank'];
-			$_SESSION['']
 			if($_SESSION['jabatan'] == 1){
 				header("location:customer/index.php");
 			}else if($_SESSION['jabatan'] == 2){
-				header("location:chef/index.php");
+				header("location:waiter/index.php");
 			}else if($_SESSION['jabatan'] == 3){
+				header("location:kitchen/index.php");
+			}else if($_SESSION['jabatan'] == 4){
+				header("location:cashier/index.php");
+			}else if($_SESSION['jabatan'] == 5){
 				header("location:manager/index.php");
+			}else if($_SESSION['jabatan'] == 6){
+				header("location:master/index.php");
 			}
 		}else{
 			header("location=login.php?login=1");

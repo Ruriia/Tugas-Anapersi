@@ -1,9 +1,20 @@
+create table msrank(rank int not null auto_increment primary key,
+keterangan char(10));
+
+insert into msrank(keterangan) values 
+("customer"),
+("waiter"),
+("kitchen"),
+("cashier"),
+("manager"),
+("master");
+
 create table msuser(id int not null auto_increment primary key,
 username varchar(20),
 name varchar(25),
 email varchar(50),
 password varchar(100),
-rank int(1));
+rank int(1) references msrank(rank) on update cascade on delete cascade);
 
 insert into msuser(username, name, email, password, rank) values 
 ("customer", "customer", "customer", "$2y$10$giPuQz1sbkUXlWsv6q.sM.L7.0SkQvc0/yP2YU29MqJzCLySSxmm.", 1),
@@ -14,7 +25,7 @@ insert into msuser(username, name, email, password, rank) values
 ("master", "master", "master", "$2y$10$hXaDlsYAElzUZToN4wUIi.t1E5ryscu6aEnzX57s1CtGqfAL93apG", 6)
  ;
 
- create table msrank()
+
 
 create table resep();
 
