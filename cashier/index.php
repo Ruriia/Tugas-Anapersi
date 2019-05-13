@@ -1,21 +1,4 @@
 <?php 
-  require "../database_key.php";
-  $key = connection();
-
-  
-  $sql = "SELECT count(*) as panjang FROM master_order WHERE status = 1";
-  $run = $key->query($sql);
-  $hasil = $run->fetch();
-  $length = $hasil['panjang'];
-  $a = 0;
-  
-
-  $sql = "SELECT master_order.masterorder as masterorder, master_order.tableid as tableid, msuser.name as nama FROM master_order,msuser WHERE status = 1 and master_order.tableid = msuser.id";
-
-  $run = $key->query($sql);
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

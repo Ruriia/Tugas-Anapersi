@@ -1,5 +1,7 @@
 <?php
 	session_start();
+
+  
 	require "../database_key.php";
 
 	$key = connection();
