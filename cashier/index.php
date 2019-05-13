@@ -1,3 +1,21 @@
+<?php 
+  require "../database_key.php";
+  $key = connection();
+
+  
+  $sql = "SELECT count(*) as panjang FROM master_order WHERE status = 1";
+  $run = $key->query($sql);
+  $hasil = $run->fetch();
+  $length = $hasil['panjang'];
+  $a = 0;
+  
+
+  $sql = "SELECT master_order.masterorder as masterorder, master_order.tableid as tableid, msuser.name as nama FROM master_order,msuser WHERE status = 1 and master_order.tableid = msuser.id";
+
+  $run = $key->query($sql);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,11 +42,11 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-    <!-- Preloader Starts -->
+    <!-- Preloader Starts
     <div class="preloader">
         <div class="spinner"></div>
     </div>
-    <!-- Preloader End -->
+    Preloader End -->
 
     <!-- Header Area Starts -->
     <header class="header-area">
@@ -73,28 +91,71 @@
             
 
             <!-- pilihan menu -->
+            <?php while($a < $length):
+            $i = 0; ?>
             <div class="row">
+              <?php while($i < 3):
+                $i++;
+                $a++;
+                if($row = $run->fetch()){
+
+                }else{
+                  break;
+                }
+                $meja = $row['tableid'];
+                $master = $row['masterorder'];
+                $x = 0;                
+                ?>
                 <div class="col-md-4 col-sm-6">
                     <div class="single-food">
                         
                         <div class="food-content">
                             <div class="d-flex justify-content-between">
-                                <h5>Executive 1</h5>
+                                <h5><?= $row['nama']; ?></h5>
                                 <span class="style-change">Not Paid </span>
                             </div>
+                            <table border="1">
+                              <tr>
+                                <th width="15px">No</th>
+                                <th width="400px">Menu Name</th>
+                                <th width="15px">Qty</th>
+                                <th width="250px">Price</th>
+                              </tr>
+                              <?php 
+                                $newsql = "SELECT menu.namamenu as menunama, ordered_item.qty as jumlah, ordered_item.total as price FROM menu, ordered_item WHERE masterorder = ? and menu.menuid = ordered_item.menuid";
+                                $ambil = $key->prepare($newsql);
+                                $ambil->execute([$master]);
+                                $hargaakhir = 0;
+                                while($daftarbayar = $ambil->fetch()):
+                                $hargaakhir = $hargaakhir + $daftarbayar['price'];
+                                $x++; 
+                              ?>
+                              <tr>
+                                <td><?= $x; ?></td>
+                                <td><?= $daftarbayar['menunama']; ?></td>
+                                <td><?= $daftarbayar['jumlah']; ?></td>
+                                <td>Rp. <?= $daftarbayar['price']; ?></td>
+                              </tr>
+                              <?php endwhile;?>
+                              <tr>
+                                <td colspan="3">Grand Total</td>
+                                <td>Rp. <?= $hargaakhir ?></td>
+                              </tr>
+                            </table>
                             
-                            <a href="#" class="template-btn mt-3" data-toggle="modal" data-target="#myPaymentSummary"> start transaction </a>
+                            <a href="pay_process.php?id=<?= $master;?>" class="template-btn mt-3">Payed</a>
                             
                         </div>
                     </div>
                 </div>
-
+              <?php endwhile; ?>
 
 
 
                 
 
             </div>
+          <?php endwhile; ?>
         </div>
     </section>
     <!-- Food Area End -->
