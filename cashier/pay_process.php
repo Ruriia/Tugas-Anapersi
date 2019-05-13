@@ -18,7 +18,7 @@
 
 	$run = $key->prepare($sql);
 
-	$run->execute($_GET['id']);
+	$run->execute([$_GET['id']]);
 	
 
 	header("location: index.php");

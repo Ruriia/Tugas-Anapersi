@@ -72,7 +72,8 @@ create table ordered_item(orderid int not null auto_increment primary key,
 masterorder int,
 menuid int,
 qty int,
-total int);
+total int,
+status int);
 
 
 create table stock(stockid int not null auto_increment primary key,
