@@ -121,45 +121,7 @@
 
             <!-- pilihan menu -->
             <div class="row">
-                <div class="col-md-4 col-sm-6">
-                    <div class="single-food">
-                        
-                        <div class="food-content">
-                            <div class="d-flex justify-content-between">
-                                <h5>Stock List</h5>
-                            </div>
-                            
-                            <table border="1">
-                              <tr>
-                                <th>No</th>
-                                <th>Nama Bahan</th>
-                                <th>Jml. Stok</th>
-                                <th>Status</th>
-                                <th>Tindakan</th>
-                              </tr>
-
-
-                              <tr>
-                                <td>1</td>
-                                <td>Bawang Merah</td>
-                                <td>10</td>
-                                <td>Stok Menipis</td>
-                                 <td><a href=""> Update Stok</a></td>
-                              </tr>
-                              <tr>
-                                <td>2</td>
-                                <td>Bawang Putih</td>
-                                <td>100</td>
-                                <td>Stok Tersedia</td>
-                                 <td><a href=""> Update Stok</a></td>
-                              </tr>
-                          </table>
-                            <a href="#" class="template-btn mt-3" data-toggle="modal" data-target="#myInventory"> Add Inventory </a>
-                            <a href="#" class="template-btn mt-3" data-toggle="modal" data-target="#mySupplier"> Contact Supplier </a>
-                        </div>
-                    </div>
-                </div>
-    <!-- Inventory End -->
+               
 
 <!-- start menu -->
                     <div class="col-md-4 col-sm-6">
@@ -311,24 +273,26 @@
                                 <th>Menu Name</th>
                                 <th>Category</th>
                                 <th>Price</th>
-                                <th>Sold</th>
                               </tr>
 
+                              <?php $i = 0;
+                    while($i < 100):
+                    $i++;
+                    $a++;
+                    if($row = $menudata->fetch()){
+
+                    }else{
+                        break;
+                    } 
+                     ?>
 
                               <tr>
                                 <td>1</td>
-                                <td>Egg Rolls</td>
+                                <td><?= $row['namamenu'] ?></td>
                                 <td>Appetizer</td>
-                                <td>Rp35.000,-</td>
-                                 <td>10</td>
+                                <td><?= $row['price'] ?></td>
                               </tr>
-                              <tr>
-                                <td>2</td>
-                                <td>Chicken Burger</td>
-                                <td>Main Menu</td>
-                                <td>Rp55.000,-</td>
-                                 <td>25</td>
-                              </tr>
+                              <?php endwhile; ?>
                           </table>
                            
         </div>
@@ -363,14 +327,11 @@
           <form action="addmenu_proses.php" method="post">
             Menu Name : <br> <input type="text" name="menu_name" placeholder="Menu Name"><br>
             Category : <br> 
-            <select name="category">
-              <option value="recommendation">Our Chef Recommendation </option>
-              <option value="appetizer">Appetizer </option>
-              <option value="mainmenu">Main Menu </option>
-              <option value="dessert">Dessert</option>
-              <option value="vegetarian">Vegetarian </option>
-              <option value="drink">Drink</option>
-            </select>
+            <input type="radio" name="tag" value="1"> Appetizer <br>
+            <input type="radio" name="tag" value="2"> Main Food <br>
+            <input type="radio" name="tag" value="3"> Dessert <br>
+            <input type="radio" name="tag" value="4"> Vegetarian <br>
+            <input type="radio" name="tag" value="5"> Drink <br>
             Description : <br> <textarea type="text" name="description" placeholder="Description"></textarea><br>
            Price : <br> <input type="number" name="price" placeholder="Price"><br>
               <br>
@@ -409,14 +370,11 @@
           <form action="editmenu_proses.php" method="post">
             Menu Name : <br> <input type="text" name="menu_name" placeholder="Menu Name"><br>
             Category : <br> 
-            <select name="category">
-              <option value="recommendation">Our Chef Recommendation </option>
-              <option value="appetizer">Appetizer </option>
-              <option value="mainmenu">Main Menu </option>
-              <option value="dessert">Dessert</option>
-              <option value="vegetarian">Vegetarian </option>
-              <option value="drink">Drink</option>
-            </select>
+            <input type="radio" name="tag" value="1"> Appetizer <br>
+            <input type="radio" name="tag" value="2"> Main Food <br>
+            <input type="radio" name="tag" value="3"> Dessert <br>
+            <input type="radio" name="tag" value="4"> Vegetarian <br>
+            <input type="radio" name="tag" value="5"> Drink <br>
             Description : <br> <textarea type="text" name="description" placeholder="Description"></textarea><br>
            Price : <br> <input type="number" name="price" placeholder="Price"><br>
               <br>

@@ -68,7 +68,7 @@ session_start();
                     </div>  
                     <div class="main-menu">
                         <ul>
-                            <li> User <b> Waiter </b> </li> &nbsp;
+                            <li> User <b> <?= $_SESSION['nama']; ?> </b> </li> &nbsp;
                     </div>
                 </div>
             </div>
@@ -177,82 +177,10 @@ session_start();
                 </div>
                 <!-- End Menu -->
 
-                <!-- start menu -->
-                    <div class="col-md-4 col-sm-6">
-                    <div class="single-food">
-                        
-                        <div class="food-content">
-                            <div class="d-flex justify-content-between">
-                                <h5>Order Review</h5>
-                                
-                            </div>
-                            <?php
-                              $query = "SELECT * FROM msuser WHERE occupied = 1 and rank = 1";
-                              $run = $key->query($query);
-                              while($listmenu = $run->fetch()):
-                            ?>
-                            
-                            <a href="showorder.php?id=<?= $listmenu['id'];?>" class="template-btn mt-3"> Executive 1 </a><br>
-                            <?php endwhile; ?>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Menu -->
 
 
 
-    <!-- Start Order Review -->
 
-  <div class="modal fade" id="myOrder" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-         
-
-        </div>
-        
-
-        <div class="modal-body">
-          <h4 style="color: black;">Order Review</h4>
-          Table ....
-          <br><br>
-          <table border="1">
-                              <tr>
-                                <th width="15px">No</th>
-                                <th width="300px">Menu Name</th><br>
-                                <th width="300px">Category</th>
-                                <th width="15px">Qty</th>
-                              </tr>
-                              <tr>
-                                <td>1</td>
-                                <td>Egg Rolls</td>
-                                <td>Appetizer</td>
-                                 <td>3</td>
-                              </tr>
-                              <tr>
-                                <td>2</td>
-                                <td>Chicken Burger</td>
-                                <td>Main Menu</td>
-                                 <td>1</td>
-                              </tr>
-                            </table>
-                           
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-  
-</div>
-
-
-<!-- End of Total Sales -->
 
     <!-- Javascript -->
     <script src="../assets/js/vendor/jquery-2.2.4.min.js"></script>

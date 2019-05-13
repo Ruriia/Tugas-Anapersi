@@ -10,7 +10,7 @@
     <!-- Icon -->
     
     <div class="fadeIn first">
-      <img src="assets/images/iconlogo.png" id="icon" alt="User Icon" style="width: 100px; height: 100px;" />
+      <img src="assets/images/logo/logo.png" id="icon" alt="User Icon" style="width: 100px; height: 100px;" />
     </div>
 
     <!-- Login Form -->

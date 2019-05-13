@@ -2,7 +2,7 @@
 session_start();
  if(!isset($_SESSION['nama'])){
       header("location:../index.php");
-  }else if($_SESSION['nama'] != "kitchen"){
+  }else if($_SESSION['nama'] != "cashier"){
      header("location:../redirect.php");
     }
 
@@ -71,7 +71,7 @@ session_start();
                     </div>  
                     <div class="main-menu">
                         <ul>
-                            <li> User <b> Cashier </b> </li> &nbsp;
+                            <li> User <b> <?php $_SESSION['nama'] ?> </b> </li> &nbsp;
                     </div>
                 </div>
             </div>

@@ -66,7 +66,7 @@
                     </div>  
                     <div class="main-menu">
                         <ul>
-                            <li> User: <b> Kitchen</b> </li> &nbsp;
+                            <li> User <b> <?php $_SESSION['nama'] ?> </b> </li> &nbsp;
                     </div>
                 </div>
             </div>
@@ -149,7 +149,7 @@
                                 <h5><?= $meja ?></h5>
                                 <span class="style-change">Processing </span>
                             </div>
-                            Estimation : .... minutes
+                            
                             <table border="1">
                               <tr>
                                 <th width="15px">No</th>
@@ -198,68 +198,7 @@
     </section>
     <!-- Food Area End -->
 
-    <!-- UpdateETA -->
-
-  <div class="modal fade" id="myUpdateETA" role="dialog">
-    <div class="modal-dialog">
     
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-         
-
-        </div>
-        
-
-        <div class="modal-body">
-          <h4 style="color: black;">Update Cooking Estimation</h4>
-          Table Executive 5
-          <table border="1">
-                              <tr>
-                                <th width="15px">No</th>
-                                <th width="300px">Menu Name</th>
-                                <th width="15px">Qty</th>
-                              </tr>
-
-
-                              <tr>
-                                <td></td>
-                                <td>Topu Lasange</td>
-                                <td>3</td>
-                              </tr>
-                               <tr>
-                                <td></td>
-                                <td>Mineral Water</td>
-                                <td>2</td>
-                              </tr>
-                               <tr>
-                                <td></td>
-                                <td>Ice Tea Sparkling</td>
-                                <td>1</td>
-                              </tr>
-                          </table>
-                           <br> <br>
-                          Current Time ETA : ... minute
-                           <br> <br>
-                          <form action="ordersystem-eta.php" method="post">
-                            New Time ETA : <input type="number" name="eta" width="80px" placeholder="New ETA"> minutes
-                             <br> <br>
-                            Update Reason : <textarea name="eta" placeholder="Type reason"> </textarea>
-                            <br><br>
-                            <button type="submit" class="btn btn-default">Notify Customer</button>
-                        </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-  
-</div>
-<!-- End of Call Waiter -->
 
     <!-- Javascript -->
     <script src="../assets/js/vendor/jquery-2.2.4.min.js"></script>

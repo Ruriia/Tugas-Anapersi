@@ -56,7 +56,7 @@ session_start();
                     </div>  
                     <div class="main-menu">
                         <ul>
-                            <li> User <b> Master </b> </li> &nbsp;
+                            <li> User <b> <?= $_SESSION['nama']; ?> </b> </li> &nbsp;
                     </div>
                 </div>
             </div>
