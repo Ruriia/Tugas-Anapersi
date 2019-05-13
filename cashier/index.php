@@ -1,20 +1,4 @@
-<?php
-session_start();
-    if(!isset($_SESSION['nama'])){
-      header("location:../index.php");
-  }else if($_SESSION['nama'] == "customer"){
-     header("location:../customer/index.php");
-    }else if($_SESSION['nama'] == "cashier"){
-     header("location:../cashier/index.php");
-    }else if($_SESSION['nama'] == "kitchen"){
-     header("location:../cashier/kitchen.php");
-    }else if($_SESSION['nama'] == "master"){
-     header("location:../master/index.php");
-    }else if($_SESSION['nama'] == "waiter"){
-     header("location:../waiter/index.php");
-    }
-?>
-
+<?php 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,11 +25,11 @@ session_start();
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-    <!-- Preloader Starts -->
+    <!-- Preloader Starts
     <div class="preloader">
         <div class="spinner"></div>
     </div>
-    <!-- Preloader End -->
+    Preloader End -->
 
     <!-- Header Area Starts -->
     <header class="header-area">
@@ -90,28 +74,71 @@ session_start();
             
 
             <!-- pilihan menu -->
+            <?php while($a < $length):
+            $i = 0; ?>
             <div class="row">
+              <?php while($i < 3):
+                $i++;
+                $a++;
+                if($row = $run->fetch()){
+
+                }else{
+                  break;
+                }
+                $meja = $row['tableid'];
+                $master = $row['masterorder'];
+                $x = 0;                
+                ?>
                 <div class="col-md-4 col-sm-6">
                     <div class="single-food">
                         
                         <div class="food-content">
                             <div class="d-flex justify-content-between">
-                                <h5>Executive 1</h5>
+                                <h5><?= $row['nama']; ?></h5>
                                 <span class="style-change">Not Paid </span>
                             </div>
+                            <table border="1">
+                              <tr>
+                                <th width="15px">No</th>
+                                <th width="400px">Menu Name</th>
+                                <th width="15px">Qty</th>
+                                <th width="250px">Price</th>
+                              </tr>
+                              <?php 
+                                $newsql = "SELECT menu.namamenu as menunama, ordered_item.qty as jumlah, ordered_item.total as price FROM menu, ordered_item WHERE masterorder = ? and menu.menuid = ordered_item.menuid";
+                                $ambil = $key->prepare($newsql);
+                                $ambil->execute([$master]);
+                                $hargaakhir = 0;
+                                while($daftarbayar = $ambil->fetch()):
+                                $hargaakhir = $hargaakhir + $daftarbayar['price'];
+                                $x++; 
+                              ?>
+                              <tr>
+                                <td><?= $x; ?></td>
+                                <td><?= $daftarbayar['menunama']; ?></td>
+                                <td><?= $daftarbayar['jumlah']; ?></td>
+                                <td>Rp. <?= $daftarbayar['price']; ?></td>
+                              </tr>
+                              <?php endwhile;?>
+                              <tr>
+                                <td colspan="3">Grand Total</td>
+                                <td>Rp. <?= $hargaakhir ?></td>
+                              </tr>
+                            </table>
                             
-                            <a href="#" class="template-btn mt-3" data-toggle="modal" data-target="#myPaymentSummary"> start transaction </a>
+                            <a href="pay_process.php?id=<?= $master;?>" class="template-btn mt-3">Paid</a>
                             
                         </div>
                     </div>
                 </div>
-
+              <?php endwhile; ?>
 
 
 
                 
 
             </div>
+          <?php endwhile; ?>
         </div>
     </section>
     <!-- Food Area End -->
