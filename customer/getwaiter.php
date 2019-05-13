@@ -10,7 +10,7 @@
 
 	$run->execute([$_SESSION['id']]);
 
-	header("refresh: 4; index.php");
+	header("refresh: 3; customer-mainmenu.php");
 ?>
 
 <script src="../assets/js/sweetalert2.all.min.js"></script>
