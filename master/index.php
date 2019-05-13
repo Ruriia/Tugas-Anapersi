@@ -1,13 +1,16 @@
 <?php
-if(!isset($_SESSION['nama'])){
+session_start();
+    if(!isset($_SESSION['nama'])){
       header("location:../index.php");
-  }else if($_SESSION['nama'] == "Customer"){
+  }else if($_SESSION['nama'] == "customer"){
      header("location:../customer/index.php");
-    }else if($_SESSION['nama'] == "Cashier"){
+    }else if($_SESSION['nama'] == "cashier"){
      header("location:../cashier/index.php");
-    }else if($_SESSION['nama'] == "Kitchen"){
-     header("location:../kitchen/kitchen-ordersystem.php");
-    }else if($_SESSION['nama'] == "Waiter"){
+    }else if($_SESSION['nama'] == "kitchen"){
+     header("location:../cashier/kitchen.php");
+    }else if($_SESSION['nama'] == "master"){
+     header("location:../master/index.php");
+    }else if($_SESSION['nama'] == "waiter"){
      header("location:../waiter/index.php");
     }
 ?>

@@ -1,3 +1,5 @@
+
+
 <?php
     session_start();
     require "../database_key.php";
@@ -37,6 +39,21 @@
         $menudata = $key->query($selectmenu);
     }
     $a = 0;
+
+    session_start();
+    if(!isset($_SESSION['nama'])){
+      header("location:../index.php");
+  }else if($_SESSION['nama'] == "customer"){
+     header("location:../customer/index.php");
+    }else if($_SESSION['nama'] == "cashier"){
+     header("location:../cashier/index.php");
+    }else if($_SESSION['nama'] == "kitchen"){
+     header("location:../cashier/kitchen.php");
+    }else if($_SESSION['nama'] == "master"){
+     header("location:../master/index.php");
+    }else if($_SESSION['nama'] == "waiter"){
+     header("location:../waiter/index.php");
+    }
 ?>
 
 

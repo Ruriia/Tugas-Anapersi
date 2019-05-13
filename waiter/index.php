@@ -12,8 +12,6 @@
   $hasil = $key->prepare($getcall);
   $hasil->execute();
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
