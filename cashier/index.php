@@ -1,15 +1,11 @@
 <?php 
-<<<<<<< HEAD
 session_start();
  if(!isset($_SESSION['nama'])){
       header("location:../index.php");
   }else if($_SESSION['nama'] != "kitchen"){
      header("location:../redirect.php");
     }
-?>
-?>
 
-=======
  require "../database_key.php";
   $key = connection();
 
@@ -25,7 +21,7 @@ session_start();
 
   $run = $key->query($sql);
 ?>
->>>>>>> master
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
