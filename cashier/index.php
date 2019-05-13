@@ -143,7 +143,7 @@
                               </tr>
                             </table>
                             
-                            <a href="pay_process.php?id=<?= $master;?>" class="template-btn mt-3">Payed</a>
+                            <a href="pay_process.php?id=<?= $master;?>" class="template-btn mt-3">Paid</a>
                             
                         </div>
                     </div>

@@ -1,3 +1,19 @@
+<?php
+  require "../database_key.php";
+
+  $key = connection();
+
+  $getcall = "SELECT * FROM msuser WHERE occupied = 1 and calling = 1";
+  $sql = "SELECT * FROM msuser WHERE rank = 1 order by capacity";
+
+  $run = $key->prepare($sql);
+  $run->execute();
+
+  $hasil = $key->prepare($getcall);
+  $hasil->execute();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +44,7 @@
     <div class="preloader">
         <div class="spinner"></div>
     </div>
-    <!-- Preloader End -->
+     <!-- Preloader End -->
 
     <!-- Header Area Starts -->
     <header class="header-area">
@@ -81,7 +97,6 @@
                             <div class="d-flex justify-content-between">
                                 <h5>Customer Request</h5>
                             </div>
-                            
                             <table border="1">
                               <tr>
                                 <th>No</th>
@@ -89,20 +104,22 @@
                                 <th>Status</th>
                                 <th>Tindakan</th>
                               </tr>
-
-
+                              <?php $a = 0; 
+                              while($baris = $hasil->fetch()):
+                              $a++; ?>
                               <tr>
-                                <td>1</td>
-                                <td>Executive 1</td>
-                                <td>Request Call</td>
-                                 <td><a href="#"> Accept</a></td>
+                                <td><?= $a; ?></td>
+                                <td><?= $baris['name']; ?></td>
+                                <td>
+                                  <?php if($baris['calling'] == 1): ?>
+                                    <p>Request Call</p>
+                                  <?php endif; ?>
+                                </td>
+                                <td>
+                                  <a href="acceptcall.php?id=<?= $baris['id']; ?>">Go to the table</a>
+                                </td>
                               </tr>
-                              <tr>
-                                <td>2</td>
-                                <td>Executive 2</td>
-                                <td>Request Call</td>
-                                 <td><a href="#"> Accept</a></td>
-                              </tr>
+                              <?php endwhile; ?>
                           </table>
                             
                         </div>
@@ -116,11 +133,8 @@
                         
                         <div class="food-content">
                             <div class="d-flex justify-content-between">
-                                <h5>Table Occupied</h5>
-                                
+                                <h5>Table List</h5>
                             </div>
-                            
-                            
                             <table border="1">
                               <tr>
                                 <th>No</th>
@@ -129,43 +143,29 @@
                                 <th>Status</th>
                                 <th>Tindakan</th>
                               </tr>
-
-
+                              <?php $i = 0; 
+                              while($row = $run->fetch()):
+                              $i++; ?>
                               <tr>
-                                <td>1</td>
-                                <td>Executive 1</td>
-                                <td>6</td>
-                                <td>Occupied</td>
-                                 <td><a href="#"> Finish</a></td>
+                                <td><?= $i; ?></td>
+                                <td><?= $row['name']; ?></td>
+                                <td><?= $row['capacity']; ?></td>
+                                <td>
+                                  <?php if($row['occupied'] == 0): ?>
+                                    <p>Available</p>
+                                  <?php else: ?>
+                                    <p>Occupied</p>
+                                  <?php endif; ?>
+                                </td>
+                                <td>
+                                  <?php if($row['occupied'] == 0): ?>
+                                    <a href="avail.php?id=<?= $row['id']; ?>">Available</a>
+                                  <?php else: ?>
+                                    <p> Occupied </p>
+                                  <?php endif; ?>
+                                </td>
                               </tr>
-                              <tr>
-                                <td>2</td>
-                                <td>Executive 2</td>
-                                <td>6</td>
-                                <td>Occupied</td>
-                                 <td><a href="#"> Finish</a></td>
-                              </tr>
-                              <tr>
-                                <td>3</td>
-                                <td>Family 1</td>
-                                <td>4</td>
-                                <td>Available</td>
-                                 <td><a href="#"> Occupy</a></td>
-                              </tr>
-                              <tr>
-                                <td>4</td>
-                                <td>Family 2</td>
-                                <td>4</td>
-                                <td>Occupied</td>
-                                 <td><a href="#"> Finish</a></td>
-                              </tr>
-                              <tr>
-                                <td>5</td>
-                                <td>Couple 1</td>
-                                <td>2</td>
-                                <td>Available</td>
-                                 <td><a href="#"> Occupy</a></td>
-                              </tr>
+                            <?php endwhile; ?>
                           </table>
                         </div>
                     </div>
