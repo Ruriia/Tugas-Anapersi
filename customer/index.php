@@ -1,17 +1,9 @@
 <?php
 session_start();
-    if(!isset($_SESSION['nama'])){
+ if(!isset($_SESSION['nama'])){
       header("location:../index.php");
-  }else if($_SESSION['nama'] == "customer"){
-     header("location:../customer/index.php");
-    }else if($_SESSION['nama'] == "cashier"){
-     header("location:../cashier/index.php");
-    }else if($_SESSION['nama'] == "kitchen"){
-     header("location:../cashier/kitchen.php");
-    }else if($_SESSION['nama'] == "master"){
-     header("location:../master/index.php");
-    }else if($_SESSION['nama'] == "waiter"){
-     header("location:../waiter/index.php");
+  }else if($_SESSION['jabatan'] != "1"){
+     header("location:../redirect.php");
     }
 ?>
 
@@ -90,7 +82,7 @@ session_start();
                     <div class="welcome-text mt-5 mt-md-0">
                         <h3><span class="style-change">Welcome</span> <br>Selamat Datang </h3>
                         <br>
-                         <h3><span class="style-change"> Meja / Table </span> <br> Executive 1  </h3> <br> 
+                         <h3><span class="style-change"> Meja / Table </span> <br> <?= $_SESSION['nama']; ?>  </h3> <br> 
                         <a href="customer-mainmenu.php" class="template-btn mt-3">Explore our Menu / Lihat Menu Kami </a>
                         
                     </div>

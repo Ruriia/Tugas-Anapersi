@@ -1,4 +1,5 @@
 <?php
+session_start();
   require "../database_key.php";
 
   $key = connection();
@@ -11,6 +12,12 @@
 
   $hasil = $key->prepare($getcall);
   $hasil->execute();
+
+     if(!isset($_SESSION['nama'])){
+      header("location:../index.php");
+  }else if($_SESSION['nama'] != "waiter"){
+     header("location:../redirect.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
