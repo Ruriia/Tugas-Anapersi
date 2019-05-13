@@ -1,3 +1,58 @@
+<?php
+    session_start();
+    require "../database_key.php";
+    $key = connection();
+    $reco = (isset($_GET['recom'])) ? $_GET['recom'] : "";
+    $type = (isset($_GET['type'])) ? $_GET['type'] : "";
+    if($reco != ""){
+        $sql = "SELECT count(menuid) as panjang from menu where recommendation = ?";
+
+        $run = $key->prepare($sql);
+        $run->execute([$reco]);
+        $data = $run->fetch();
+        $length = $data['panjang'];
+
+        $selectmenu = "SELECT * FROM menu where recommendation = ?";
+        $menudata = $key->prepare($selectmenu);
+        $menudata->execute([$_GET['recom']]);
+    }else if($type != ""){
+        $sql = "SELECT count(menuid) as panjang from menu where tag = ?";
+
+        $run = $key->prepare($sql);
+        $run->execute([$type]);
+        $data = $run->fetch();
+        $length = $data['panjang'];
+
+        $selectmenu = "SELECT * FROM menu where tag = ?";
+        $menudata = $key->prepare($selectmenu);
+        $menudata->execute([$_GET['type']]);
+    }else{
+        $sql = "SELECT count(menuid) as panjang from menu";
+
+        $run = $key->query($sql);
+        $data = $run->fetch();
+        $length = $data['panjang'];
+
+        $selectmenu = "SELECT * FROM menu";
+        $menudata = $key->query($selectmenu);
+    }
+    $a = 0;
+
+    if(!isset($_SESSION['nama'])){
+      header("location:../index.php");
+  }else if($_SESSION['nama'] == "Customer"){
+     header("location:../customer/index.php");
+    }else if($_SESSION['nama'] == "Cashier"){
+     header("location:../cashier/index.php");
+    }else if($_SESSION['nama'] == "Kitchen"){
+     header("location:../cashier/kitchen.php");
+    }else if($_SESSION['nama'] == "Master"){
+     header("location:../master/index.php");
+    }else if($_SESSION['nama'] == "Waiter"){
+     header("location:../waiter/index.php");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,7 +102,7 @@
                     </div>  
                     <div class="main-menu">
                         <ul>
-                            <li> User <b> Manager </b> </li> &nbsp;
+                            <li> User <b> <?= $_SESSION['nama']; ?> </b> </li> &nbsp;
                     </div>
                 </div>
             </div>
