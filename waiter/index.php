@@ -186,11 +186,14 @@ session_start();
                                 <h5>Order Review</h5>
                                 
                             </div>
+                            <?php
+                              $query = "SELECT * FROM msuser WHERE occupied = 1 and rank = 1";
+                              $run = $key->query($query);
+                              while($listmenu = $run->fetch()):
+                            ?>
                             
-                            
-                             <a href="#" class="template-btn mt-3" data-toggle="modal" data-target="#myOrder"> Executive 1 </a><br>
-                              <a href="#" class="template-btn mt-3" data-toggle="modal" data-target="#myOrder"> Executive 2 </a><br>
-                               <a href="#" class="template-btn mt-3" data-toggle="modal" data-target="#myOrder"> Family 2 </a><br>
+                            <a href="showorder.php?id=<?= $listmenu['id'];?>" class="template-btn mt-3"> Executive 1 </a><br>
+                            <?php endwhile; ?>
                         </div>
                     </div>
                 </div>
