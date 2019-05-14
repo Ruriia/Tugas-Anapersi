@@ -287,7 +287,7 @@
                      ?>
 
                               <tr>
-                                <td>1</td>
+                                <td><?= $row['menuid']; ?></td>
                                 <td><?= $row['namamenu'] ?></td>
                                 <td>Appetizer</td>
                                 <td><?= $row['price'] ?></td>
@@ -325,7 +325,7 @@
           <h4 style="color: black;">Add Menu</h4>
           
           <form action="addmenu_proses.php" method="post">
-            Menu Name : <br> <input type="text" name="menu_name" placeholder="Menu Name"><br>
+            Menu Name : <br> <input type="text" name="namamenu" placeholder="Menu Name"><br>
             Category : <br> 
             <input type="radio" name="tag" value="1"> Appetizer <br>
             <input type="radio" name="tag" value="2"> Main Food <br>
@@ -368,7 +368,7 @@
           <h4 style="color: black;">Edit Menu</h4>
           
           <form action="editmenu_proses.php" method="post">
-            Menu Name : <br> <input type="text" name="menu_name" placeholder="Menu Name"><br>
+            Menu Name : <br> <input type="text" name="namamenu" placeholder="Menu Name"><br>
             Category : <br> 
             <input type="radio" name="tag" value="1"> Appetizer <br>
             <input type="radio" name="tag" value="2"> Main Food <br>
